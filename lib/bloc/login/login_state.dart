@@ -23,6 +23,13 @@ class LoginSuccess<T> extends LoginState {
   List<Object?> get props => [data];
 }
 
+class LogoutSuccess extends LoginState {
+  const LogoutSuccess();
+
+  @override
+  List<Object?> get props => [];
+}
+
 class LoginError extends LoginState {
   final String message;
 
