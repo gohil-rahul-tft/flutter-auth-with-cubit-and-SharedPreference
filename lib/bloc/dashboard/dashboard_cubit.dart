@@ -23,4 +23,18 @@ class DashboardCubit extends Cubit<DashboardState> {
     }
   }
 
+  doLogout() async {
+    // try {
+    //   var result = await _authRepository.doLogout(/*headers*/);
+    //   emit(LoginSuccess(data: result));
+    // } catch (e) {
+    //   emit(LoginError(message: "$e"));
+    // }
+
+    final pref = await SharedPreferences.getInstance();
+    pref.clear();
+
+    emit(const LogoutSuccess());
+  }
+
 }

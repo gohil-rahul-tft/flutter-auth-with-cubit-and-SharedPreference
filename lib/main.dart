@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:login_with_bloc/bloc/dashboard/dashboard_cubit.dart';
 import 'package:login_with_bloc/bloc/login/login_cubit.dart';
 import 'package:login_with_bloc/bloc/login/repo/login_repo.dart';
+import 'package:login_with_bloc/screen/dashboard_screen.dart';
 import 'package:login_with_bloc/screen/login_screen.dart';
 
 import 'router/app_router.dart';
@@ -14,11 +15,9 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-
-
   // This widget is the root of your application.
   @override
-  Widget build(BuildContext buildContext) {
+  Widget build(BuildContext context) {
     /*return MultiBlocProvider(
       providers: [
         BlocProvider(
@@ -50,14 +49,15 @@ class MyApp extends StatelessWidget {
         ),
         home: BlocListener<LoginCubit, LoginState>(
           listener: (context, state) {
-            if (state is LogoutSuccess) {
+            /*if (state is LogoutSuccess) {
               ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(content: Text('Logout successful!')),
               );
 
-              Navigator.of(context).pushNamedAndRemoveUntil(
-                  RouteManager.loginScreen, (Route<dynamic> route) => false);
-            }
+              *//*Navigator.of(context).pop(RouteManager.dashboardScreen);
+
+              Navigator.of(context).pushNamed(RouteManager.loginScreen);*//*
+            }*/
           },
           // todo replace with splash screen! :)
           child: const LoginScreen(),

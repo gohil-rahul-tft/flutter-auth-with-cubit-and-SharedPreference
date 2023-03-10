@@ -33,6 +33,12 @@ class _LoginScreenState extends State<LoginScreen> {
     bool isLogin = preferences.getBool("is_login") ?? false;
 
     if (isLogin) {
+      // Navigator.of(context).pushReplacementNamed(RouteManager.dashboardScreen);
+     /* Navigator.of(context).pushNamedAndRemoveUntil(
+          RouteManager.dashboardScreen, (Route<dynamic> route) => false);*/
+
+
+      // Navigator.of(context).pop(RouteManager.loginScreen);
       Navigator.of(context).pushReplacementNamed(RouteManager.dashboardScreen);
     }
   }
@@ -100,8 +106,13 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         );
 
-                        Navigator.of(context)
-                            .pushNamed(RouteManager.dashboardScreen);
+                        // Navigator.of(context).pushReplacementNamed(RouteManager.dashboardScreen);
+                        /*Navigator.of(context).pushNamedAndRemoveUntil(
+                            RouteManager.dashboardScreen, (Route<dynamic> route) => false);*/
+
+
+                        // Navigator.of(context).pop(RouteManager.loginScreen);
+                        Navigator.of(context).pushReplacementNamed(RouteManager.dashboardScreen);
                       }
                     },
                     builder: (context, state) {

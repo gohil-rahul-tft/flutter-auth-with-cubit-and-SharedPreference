@@ -14,7 +14,6 @@ class DashboardLoading extends DashboardState {
   List<Object> get props => [];
 }
 
-
 class DashboardSuccess<T> extends DashboardState {
   final List<LoginResponse> data;
 
@@ -33,3 +32,9 @@ class DashboardError extends DashboardState {
   List<Object> get props => [message];
 }
 
+class LogoutSuccess extends DashboardState {
+  const LogoutSuccess();
+
+  @override
+  List<Object> get props => [];
+}

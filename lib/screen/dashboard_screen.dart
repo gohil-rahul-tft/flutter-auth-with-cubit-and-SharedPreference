@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:form_field_validator/form_field_validator.dart';
 import 'package:login_with_bloc/bloc/dashboard/dashboard_cubit.dart';
-import 'package:login_with_bloc/bloc/login/login_cubit.dart';
-import 'package:login_with_bloc/screen/components/custom_button.dart';
-import 'package:login_with_bloc/screen/components/custom_textfield.dart';
+import 'package:login_with_bloc/router/app_router.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
@@ -24,7 +21,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
             onPressed: () {
               // Perform logout action here
               print("logout clicked");
-              context.read<LoginCubit>().doLogout();
+              context.read<DashboardCubit>().doLogout();
             },
             icon: const Icon(Icons.logout),
           )
@@ -35,6 +32,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
           if (state is DashboardError) {
             ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(content: Text(state.message.toString())));
+          } else if (state is LogoutSuccess) {
+            ScaffoldMessenger.of(context)
+                .showSnackBar(const SnackBar(content: Text("Logout Success")));
+
+            Navigator.of(context).pushNamedAndRemoveUntil(
+                RouteManager.loginScreen, (Route<dynamic> route) => false);
           }
         },
         builder: (context, state) {
