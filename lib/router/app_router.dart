@@ -3,8 +3,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:login_with_bloc/bloc/login/login_cubit.dart';
 import 'package:login_with_bloc/screen/dashboard_screen.dart';
+import 'package:login_with_bloc/screen/home_screen.dart';
 import 'package:login_with_bloc/screen/login_screen.dart';
 import 'package:login_with_bloc/screen/register_screen.dart';
+import 'package:login_with_bloc/screen/setting_screen.dart';
+
+final GlobalKey<NavigatorState> _rootNavigator = GlobalKey(debugLabel: 'root');
+
+final GlobalKey<NavigatorState> _shellNavigator =
+    GlobalKey(debugLabel: 'shell');
 
 class RouteManager {
   static const String splashScreen = '/splash';
@@ -13,27 +20,6 @@ class RouteManager {
   static const String loginScreen = '/';
   static const String registerScreen = '/registerScreen';
   static const String dashboardScreen = '/dashboardScreen';
-
-  static Route<dynamic> generateRoute(RouteSettings settings) {
-    switch (settings.name) {
-      case loginScreen:
-        return MaterialPageRoute(
-          builder: (_) => const DashboardScreen(),
-        );
-      case registerScreen:
-        return MaterialPageRoute(
-          builder: (_) => const RegisterScreen(),
-        );
-
-      case dashboardScreen:
-        return MaterialPageRoute(
-          builder: (_) => const DashboardScreen(),
-        );
-
-      default:
-        throw const FormatException('Route not found! Check routes again!');
-    }
-  }
 
   /// The route configuration.
   static final GoRouter router = GoRouter(
@@ -59,6 +45,32 @@ class RouteManager {
           return const DashboardScreen();
         },
       ),
+      ShellRoute(
+          navigatorKey: _shellNavigator,
+          builder: (context, state, child) =>
+              HomeScreen(key: state.pageKey, child: child),
+          routes: [
+            GoRoute(
+              path: dashboardScreen,
+              name: dashboardScreen,
+              pageBuilder: (context, state) {
+                return NoTransitionPage(
+                    child: DashboardScreen(
+                  key: state.pageKey,
+                ));
+              },
+            ),
+            GoRoute(
+              path: '/setting',
+              name: "setting",
+              pageBuilder: (context, state) {
+                return NoTransitionPage(
+                    child: SettingScreen(
+                  key: state.pageKey,
+                ));
+              },
+            )
+          ])
     ],
     redirect: (context, state) async {
       final isLogin = await context.read<LoginCubit>().isLogin();
