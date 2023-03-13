@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:form_field_validator/form_field_validator.dart';
+import 'package:go_router/go_router.dart';
 import 'package:login_with_bloc/bloc/login/login_cubit.dart';
 import 'package:login_with_bloc/router/app_router.dart';
 import 'package:login_with_bloc/screen/components/custom_button.dart';
@@ -25,7 +26,7 @@ class _LoginScreenState extends State<LoginScreen> {
   void initState() {
     super.initState();
 
-    isLogin();
+    // isLogin();
   }
 
   void isLogin() async {
@@ -34,12 +35,12 @@ class _LoginScreenState extends State<LoginScreen> {
 
     if (isLogin) {
       // Navigator.of(context).pushReplacementNamed(RouteManager.dashboardScreen);
-     /* Navigator.of(context).pushNamedAndRemoveUntil(
+      /* Navigator.of(context).pushNamedAndRemoveUntil(
           RouteManager.dashboardScreen, (Route<dynamic> route) => false);*/
 
-
       // Navigator.of(context).pop(RouteManager.loginScreen);
-      Navigator.of(context).pushReplacementNamed(RouteManager.dashboardScreen);
+      // Navigator.of(context).pushReplacementNamed(RouteManager.dashboardScreen);
+      context.goNamed(RouteManager.dashboardScreen);
     }
   }
 
@@ -110,9 +111,9 @@ class _LoginScreenState extends State<LoginScreen> {
                         /*Navigator.of(context).pushNamedAndRemoveUntil(
                             RouteManager.dashboardScreen, (Route<dynamic> route) => false);*/
 
-
                         // Navigator.of(context).pop(RouteManager.loginScreen);
-                        Navigator.of(context).pushReplacementNamed(RouteManager.dashboardScreen);
+                        // Navigator.of(context).pushReplacementNamed(RouteManager.dashboardScreen);
+                        context.goNamed(RouteManager.dashboardScreen);
                       }
                     },
                     builder: (context, state) {
@@ -157,8 +158,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                           );*/
 
-                          Navigator.of(context)
-                              .pushNamed(RouteManager.registerScreen);
+                          context.pushNamed(RouteManager.registerScreen);
                         },
                       )
                     ],

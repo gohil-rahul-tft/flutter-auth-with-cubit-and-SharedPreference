@@ -3,8 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:login_with_bloc/bloc/dashboard/dashboard_cubit.dart';
 import 'package:login_with_bloc/bloc/login/login_cubit.dart';
 import 'package:login_with_bloc/bloc/login/repo/login_repo.dart';
-import 'package:login_with_bloc/screen/dashboard_screen.dart';
-import 'package:login_with_bloc/screen/login_screen.dart';
 
 import 'router/app_router.dart';
 
@@ -18,20 +16,6 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    /*return MultiBlocProvider(
-      providers: [
-        BlocProvider(
-          create: (context) => LoginCubit(AuthRepositoryImpl()),
-        )
-      ],
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Flutter Login Sample',
-        initialRoute: RouteManager.loginScreen,
-        onGenerateRoute: RouteManager.generateRoute,
-      ),
-    );*/
-
     return MultiBlocProvider(
       providers: [
         BlocProvider(
@@ -41,29 +25,16 @@ class MyApp extends StatelessWidget {
           create: (context) => DashboardCubit(),
         ),
       ],
-      child: MaterialApp(
+      child: MaterialApp.router(
         debugShowCheckedModeBanner: false,
         title: 'Flutter Login Sample',
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: BlocListener<LoginCubit, LoginState>(
-          listener: (context, state) {
-            /*if (state is LogoutSuccess) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('Logout successful!')),
-              );
-
-              *//*Navigator.of(context).pop(RouteManager.dashboardScreen);
-
-              Navigator.of(context).pushNamed(RouteManager.loginScreen);*//*
-            }*/
-          },
-          // todo replace with splash screen! :)
-          child: const LoginScreen(),
-        ),
-        // home: const MyHomePage(title: 'Flutter Demo Home Page'),
-        onGenerateRoute: RouteManager.generateRoute,
+        routerConfig: RouteManager.router,
+        // routeInformationParser: RouteManager.router.routeInformationParser,
+        // routerDelegate: RouteManager.router.routerDelegate,
+        // routeInformationProvider: RouteManager.router.routeInformationProvider,
       ),
     );
   }

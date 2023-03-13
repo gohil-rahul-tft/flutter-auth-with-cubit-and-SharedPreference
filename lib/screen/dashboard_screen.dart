@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:login_with_bloc/bloc/dashboard/dashboard_cubit.dart';
 import 'package:login_with_bloc/router/app_router.dart';
 
@@ -34,10 +35,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 SnackBar(content: Text(state.message.toString())));
           } else if (state is LogoutSuccess) {
             ScaffoldMessenger.of(context)
-                .showSnackBar(const SnackBar(content: Text("Logout Success")));
+                .showSnackBar(const SnackBar(content: Text("Logout Success! :)")));
 
-            Navigator.of(context).pushNamedAndRemoveUntil(
-                RouteManager.loginScreen, (Route<dynamic> route) => false);
+             context.go(RouteManager.loginScreen);
           }
         },
         builder: (context, state) {

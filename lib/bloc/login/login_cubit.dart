@@ -51,4 +51,9 @@ class LoginCubit extends Cubit<LoginState> {
 
     emit(const LogoutSuccess());
   }
+
+  Future<bool> isLogin() async {
+    final preferences = await SharedPreferences.getInstance();
+    return preferences.getBool("is_login") ?? false;
+  }
 }

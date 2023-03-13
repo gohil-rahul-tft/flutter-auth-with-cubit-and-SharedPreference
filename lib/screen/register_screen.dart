@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:form_field_validator/form_field_validator.dart';
+import 'package:go_router/go_router.dart';
 import 'package:login_with_bloc/bloc/login/login_cubit.dart';
+import 'package:login_with_bloc/router/app_router.dart';
 import 'package:login_with_bloc/screen/components/custom_button.dart';
 import 'package:login_with_bloc/screen/components/custom_textfield.dart';
 
@@ -117,7 +119,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         style: TextStyle(fontSize: 20),
                       ),
                       onPressed: () {
-                        Navigator.of(context).pop();
+                        context.goNamed(RouteManager.loginScreen);
                       },
                     )
                   ],
