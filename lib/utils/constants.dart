@@ -3,4 +3,5 @@ class Constants {
   static String LOGIN = "login";
   static String REGISTER = "register";
   static String USER = "user";
+  static String SETTING = "setting";
 }

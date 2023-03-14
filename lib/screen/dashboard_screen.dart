@@ -12,6 +12,14 @@ class DashboardScreen extends StatefulWidget {
 }
 
 class _DashboardScreenState extends State<DashboardScreen> {
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    context.read<DashboardCubit>().fetchUsers();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(

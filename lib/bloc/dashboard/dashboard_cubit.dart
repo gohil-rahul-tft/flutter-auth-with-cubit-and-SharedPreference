@@ -10,10 +10,10 @@ class DashboardCubit extends Cubit<DashboardState> {
   final _service = DashboardService();
 
   DashboardCubit() : super(DashboardInitial()) {
-    _fetchUsers();
+    fetchUsers();
   }
 
-  _fetchUsers() async {
+  fetchUsers() async {
     emit(DashboardLoading());
     try {
       var result = await _service.fetchUsers();

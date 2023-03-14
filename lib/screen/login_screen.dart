@@ -40,7 +40,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
       // Navigator.of(context).pop(RouteManager.loginScreen);
       // Navigator.of(context).pushReplacementNamed(RouteManager.dashboardScreen);
-      context.goNamed(RouteManager.dashboardScreen);
+      // context.goNamed(RouteManager.dashboardScreen);
     }
   }
 

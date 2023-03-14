@@ -1,6 +1,6 @@
-
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:login_with_bloc/router/app_router.dart';
 
 class BottomNavigationWidget extends StatefulWidget {
   const BottomNavigationWidget({Key? key}) : super(key: key);
@@ -10,11 +10,10 @@ class BottomNavigationWidget extends StatefulWidget {
 }
 
 class _BottomNavigationWidgetState extends State<BottomNavigationWidget> {
-  var position = 0;
+  int position = 0;
 
   @override
   Widget build(BuildContext context) {
-
     return BottomNavigationBar(
       backgroundColor: Colors.blueGrey,
       currentIndex: position,
@@ -35,36 +34,31 @@ class _BottomNavigationWidgetState extends State<BottomNavigationWidget> {
         BottomNavigationBarItem(
             activeIcon: Icon(Icons.home),
             icon: Icon(Icons.home_work),
-            label: 'Home'
-        ),
-        BottomNavigationBarItem(
-            activeIcon: Icon(Icons.shopify),
-            icon: Icon(Icons.shopping_bag),
-            label: 'Cart'
-        ),
+            label: 'Home'),
         BottomNavigationBarItem(
             activeIcon: Icon(Icons.settings),
             icon: Icon(Icons.settings_applications),
-            label: 'Setting'
-        ),
+            label: 'Setting'),
       ],
     );
   }
 
   void _onTap(int index) {
-    position = index;
+    setState(() {
+      position = index;
+    });
+
+    print(index.toString());
 
     switch (index) {
       case 0:
-        context.go('/');
-        break;
-
+        return context.go(RouteManager.dashboardScreen);
 
       case 1:
-        context.go('/setting');
-        break;
+        return context.goNamed(RouteManager.settingScreen);
 
       default:
+        return context.go(RouteManager.dashboardScreen);
     }
   }
 }

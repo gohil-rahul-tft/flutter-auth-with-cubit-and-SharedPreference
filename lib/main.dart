@@ -31,10 +31,10 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        routerConfig: RouteManager.router,
-        // routeInformationParser: RouteManager.router.routeInformationParser,
-        // routerDelegate: RouteManager.router.routerDelegate,
-        // routeInformationProvider: RouteManager.router.routeInformationProvider,
+        // routerConfig: RouteManager.router,
+        routeInformationParser: RouteManager.router.routeInformationParser,
+        routerDelegate: RouteManager.router.routerDelegate,
+        routeInformationProvider: RouteManager.router.routeInformationProvider,
       ),
     );
   }
